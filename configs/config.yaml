@@ -1,0 +1,15 @@
+data:
+  raw_data_path: data/creditcard.csv
+
+models:
+  random_forest_path: models/random_forest_model.pkl
+  scaler_path: models/scaler.pkl
+
+training:
+  test_size: 0.2
+  random_state: 42
+
+streaming:
+  kafka_bootstrap_servers: localhost:9092
+  transactions_topic: transactions
+  alerts_topic: fraud_alerts

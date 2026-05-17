@@ -1,0 +1,80 @@
+services:
+
+  redpanda:
+    image: redpandadata/redpanda:latest
+    container_name: redpanda
+
+    command:
+      - redpanda
+      - start
+      - --overprovisioned
+      - --smp
+      - '1'
+      - --memory
+      - '1G'
+      - --reserve-memory
+      - '0M'
+      - --node-id
+      - '0'
+      - --check=false
+      - --kafka-addr
+      - PLAINTEXT://0.0.0.0:9092
+      - --advertise-kafka-addr
+      - PLAINTEXT://redpanda:9092
+
+    ports:
+      - "9092:9092"
+
+  producer:
+    build: .
+    container_name: producer
+
+    command: python src/streaming/producer.py
+
+    restart: always
+
+    depends_on:
+      - redpanda
+
+  consumer:
+    build: .
+    container_name: consumer
+
+    command: python src/streaming/consumer.py
+
+    restart: always
+
+    volumes:
+      - ./src/streaming:/app/src/streaming
+
+    depends_on:
+      - redpanda
+
+  alert_service:
+    build: .
+    container_name: alert_service
+
+    command: python src/streaming/alert_service.py
+
+    restart: always
+
+    volumes:
+      - ./src/streaming:/app/src/streaming
+
+    depends_on:
+      - redpanda
+
+  dashboard:
+    build: .
+    container_name: dashboard
+
+    command: streamlit run src/dashboard/dashboard.py --server.port=8501 --server.address=0.0.0.0
+
+    ports:
+      - "8501:8501"
+
+    volumes:
+      - ./src/streaming:/app/src/streaming
+
+    depends_on:
+      - consumer
