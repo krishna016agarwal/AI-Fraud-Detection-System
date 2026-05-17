@@ -28,21 +28,6 @@ The complete system can be launched using:
 ```bash
 docker compose up --build
 ```
-## Dataset
-
-This project uses the **Credit Card Fraud Detection Dataset** from Kaggle.
-
-Dataset link:
-
-https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
-
-After downloading, place the CSV file here:
-
-```text
-data/creditcard.csv
-
----
-
 ## Problem Statement
 
 Financial fraud detection is a critical problem in banking, fintech, and payment systems. Fraudulent transactions are rare, fast-moving, and often hidden inside massive transaction streams.
@@ -76,16 +61,9 @@ This project simulates that kind of real-world AI architecture.
 
 ---
 ## Screenshots
-
-### Real-Time Dashboard
-
 ![Real-Time Dashboard](screenshots/dashboard.png)
 
-### Graph
-
-![Fraud Alerts](screenshots/graph.png.png)
-
-### Model Training Output
+![Graph](screenshots/graph.png)
 
 ![Model Training Output](screenshots/model_training_output.png)
 
@@ -208,25 +186,6 @@ flowchart TD
 ```
 
 ---
-
-## Why This Project Is Different
-
-Many student ML projects only include:
-
-```text
-Dataset → Notebook → Accuracy
-```
-
-This project includes:
-
-```text
-Dataset → ML Pipeline → Saved Model → Kafka Streaming → Real-Time Inference → Alerts → Dashboard → Dockerized Deployment
-```
-
-That makes it closer to how real AI systems are built in fintech and banking environments.
-
----
-
 ## Dataset
 
 This project uses the **Credit Card Fraud Detection Dataset** from Kaggle.
@@ -473,107 +432,6 @@ Producer → transactions topic → Consumer → fraud_alerts topic → Alert Se
 This decouples services and makes the system scalable.
 
 ---
-
-## Why Redpanda Instead Of Apache Kafka?
-
-Redpanda is Kafka-compatible but easier to run locally and inside Docker.
-
-Advantages:
-
-- No ZooKeeper needed
-- Lightweight setup
-- Kafka API compatible
-- Works well for development and demos
-
----
-
-## Dashboard Features
-
-The Streamlit dashboard shows:
-
-- Total processed transactions
-- Fraud transaction count
-- Normal transaction count
-- Live prediction table
-- Fraud probability line chart
-- Real-time fraud alerts
-
----
-
-## Important Engineering Concepts Demonstrated
-
-This project demonstrates multiple real-world AI engineering concepts:
-
-### Machine Learning
-
-- Binary classification
-- Fraud detection
-- Class imbalance handling
-- SMOTE oversampling
-- Model evaluation using precision, recall, F1-score, ROC-AUC
-- Model serialization
-
-### Data Engineering
-
-- Streaming transaction generation
-- Kafka topics
-- Producer-consumer pattern
-- Event-driven architecture
-
-### MLOps
-
-- Modular ML pipeline
-- Saved artifacts
-- Reusable training and evaluation modules
-- Dockerized execution
-
-### Distributed Systems
-
-- Independent services
-- Kafka broker communication
-- Shared volume for prediction and alert logs
-- Docker Compose orchestration
-
-### Monitoring
-
-- Live dashboard
-- Fraud alerts
-- Real-time metrics
-
----
-
-## Why Accuracy Alone Is Not Enough
-
-Fraud detection datasets are highly imbalanced.
-
-If 99.8% of transactions are normal, a model can predict every transaction as normal and still get very high accuracy.
-
-That is why this project focuses on:
-
-- Precision
-- Recall
-- F1-score
-- ROC-AUC
-
-For fraud detection, recall is especially important because missing fraud can be costly.
-
----
-
-## Limitations
-
-This project is a strong simulation, but not a full banking production system.
-
-Current limitations:
-
-- Uses simulated streaming transactions
-- Uses JSON files for lightweight dashboard storage
-- Does not include real payment gateway integration
-- Does not include authentication
-- Does not include database persistence
-- Does not include model drift monitoring yet
-
----
-
 ## Future Improvements
 
 Possible upgrades:
@@ -589,50 +447,4 @@ Possible upgrades:
 - Real-time WebSocket dashboard
 - SHAP explainability for model predictions
 
----
 
-## Resume Description
-
-```text
-Built a distributed real-time AI fraud detection platform using Python, Kafka-compatible Redpanda, Scikit-learn, Streamlit, and Docker. Designed a modular ML pipeline with ingestion, preprocessing, SMOTE-based class balancing, Random Forest training, real-time producer-consumer inference, fraud alerting, and live monitoring dashboard.
-```
-
----
-
-## Short Resume Bullet Points
-
-- Built an end-to-end real-time fraud detection system using Kafka, Scikit-learn, Streamlit, and Docker.
-- Designed a modular ML pipeline for ingestion, preprocessing, SMOTE balancing, training, evaluation, and inference.
-- Implemented event-driven producer-consumer architecture for live transaction processing.
-- Achieved 0.9911 ROC-AUC using Random Forest on a highly imbalanced fraud detection dataset.
-- Created a real-time dashboard for fraud alerts, prediction monitoring, and transaction analytics.
-- Dockerized the complete multi-service system using Docker Compose.
-
----
-
-## Interview Talking Points
-
-If asked about this project, explain:
-
-1. Why fraud detection is an imbalanced classification problem
-2. Why accuracy is misleading for rare fraud events
-3. Why SMOTE was used
-4. Why Random Forest was selected as final model
-5. How Kafka enables real-time streaming
-6. How producer and consumer services are decoupled
-7. How fraud alerts are emitted through a separate Kafka topic
-8. How Docker Compose runs the full distributed system
-9. How dashboard monitors predictions in real time
-10. How this differs from a normal notebook-only ML project
-
----
-
-## Final Outcome
-
-This project represents a complete AI engineering workflow:
-
-```text
-Research → Model Training → Model Evaluation → Model Serialization → Streaming Inference → Alerting → Monitoring → Dockerized Execution
-```
-
-It is designed to demonstrate practical AI/ML system architecture, not just model training.
