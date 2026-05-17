@@ -8,9 +8,6 @@ This project is designed to show not only machine learning model training, but a
 
 ## Project Summary
 
-Most beginner ML projects stop after training a model in a notebook.  
-This project goes further by building an end-to-end real-time AI system:
-
 - Historical fraud dataset ingestion
 - Exploratory data analysis
 - Class imbalance handling
@@ -57,7 +54,7 @@ This project simulates that kind of real-world AI architecture.
 - Docker Compose support for single-command startup
 - Event-driven architecture using producer-consumer pattern
 - Latest prediction and alert tracking using JSON-based lightweight storage
-- Clean project structure suitable for resume and GitHub portfolio
+
 
 ---
 ## Screenshots
@@ -80,7 +77,6 @@ This project simulates that kind of real-world AI architecture.
 | Messaging Client | kafka-python |
 | Dashboard | Streamlit |
 | Containerization | Docker |
-| Orchestration | Docker Compose |
 | Dataset Source | Kaggle Credit Card Fraud Dataset |
 
 ---
@@ -227,8 +223,6 @@ That means:
 - Their exact business meaning is unknown
 - The ML model learns fraud patterns from their relationships
 
-This is realistic because banks often anonymize sensitive financial data.
-
 ---
 
 ## Model Performance
@@ -246,14 +240,14 @@ Final ROC-AUC Score:
 0.9911
 ```
 
-This is strong performance for a highly imbalanced fraud detection dataset.
+
 
 ---
 
 ## Project Structure
 
 ```text
-ai/
+ai_fraud_detection_system/
 ├── data/
 │   └── creditcard.csv
 │
