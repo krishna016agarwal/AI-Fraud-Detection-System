@@ -38,8 +38,6 @@ A real fraud detection system must:
 - Provide monitoring for analysts
 - Run as a reliable distributed system
 
-This project simulates that kind of real-world AI architecture.
-
 ---
 
 ## Key Features
